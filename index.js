@@ -36,7 +36,7 @@ const onInput = async (event) => {
 
   resultsWrapper.innerHTML = "";
   dropdown.classList.add("is-active");
-  for (movie of movies) {
+  for (let movie of movies) {
     const option = document.createElement("a");
     const imgSrc = movie.Poster === "N/A" ? "" : movie.Poster;
     option.classList.add("dropdown-item");
@@ -44,6 +44,10 @@ const onInput = async (event) => {
     <img src="${imgSrc}"/>
     ${movie.Title}
     `;
+    option.addEventListener("click", () => {
+      dropdown.classList.remove("is-active");
+      input.value = movie.Title;
+    });
     resultsWrapper.appendChild(option);
   }
 };
